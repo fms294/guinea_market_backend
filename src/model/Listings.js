@@ -27,9 +27,13 @@ const listingSchema = mongoose.Schema(
             required: true,
             trim: true,
         },
-        category: {
+        main_category: {
             type: String,
             required: true,
+            trim: true
+        },
+        sub_category: {
+            type: String,
             trim: true
         },
         region:{
@@ -48,27 +52,30 @@ const listingSchema = mongoose.Schema(
     }, { timeStamp: true }
 );
 
-const filterOptions = async (category) => {
-    const array = category.map(async (item) => {
-        console.log("item", item);
-        let result = await Listing.find({category: item});
-        console.log("...", result);
-        return result;
-    });
-    const resultArray = array.map((item) => {
-        // const listingRes = await result.map((itemData) => {
-        //     return itemData;
-        // })
-        console.log("result...", item);
-        return item;
-    })
-    console.log("result", resultArray);
-    return array;
-};
+// listingSchema.methods.filterThings = async function (category) {
+//     return category;
+// }
+
+// listingSchema.methods.filterOptions = async function (category) {
+//     const listing = this;
+//     return listing;
+//     // const array = category.map(async (item) => {
+//     //     console.log("item", item);
+//     //     let result = await Listing.find({category: item});
+//     //     console.log("...", result);
+//     //     return result;
+//     // });
+//     // const resultArray = array.map((item) => {
+//     //     // const listingRes = await result.map((itemData) => {
+//     //     //     return itemData;
+//     //     // })
+//     //     console.log("result...", item);
+//     //     return item;
+//     // })
+//     // console.log("result", resultArray);
+//     // return array;
+// };
 
 const Listing = mongoose.model("Listing", listingSchema);
 
-module.exports = {
-    Listing,
-    filterOptions
-};
+module.exports = Listing;
