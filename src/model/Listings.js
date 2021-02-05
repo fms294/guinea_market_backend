@@ -41,16 +41,25 @@ const listingSchema = mongoose.Schema(
             required: true,
             trim: true
         },
-        phone:{
-            type: Number,
-            required: true
-        },
-        location: {
-            type: [Number],
-            required: true
+        contact_phone:{
+            required: true,
+            type: String,
+            trim: true,
+            validate (value) {
+                const checkedValue = value.match(/\d/g).length===9;
+                if (!checkedValue) {
+                    throw new Error("Phone number is Invalid");
+                }
+            }
         }
     }, { timeStamp: true }
 );
+
+
+//location: {
+//             type: [Number],
+//             required: true
+//         }
 
 // listingSchema.methods.filterThings = async function (category) {
 //     return category;

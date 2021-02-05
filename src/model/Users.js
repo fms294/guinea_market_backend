@@ -10,14 +10,15 @@ const userSchema = mongoose.Schema(
             type: String,
             trim: true
         },
-        email: {
+        phone: {
             required: true,
             type: String,
-            unique: true,
             trim: true,
+            unique: true,
             validate (value) {
-                if (!validator.isEmail(value)) {
-                    throw new Error("Email is Invalid.");
+                const checkedValue = value.match(/\d/g).length===9;
+                if (!checkedValue) {
+                    throw new Error("Phone number is Invalid");
                 }
             }
         },
@@ -68,16 +69,16 @@ userSchema.methods.generateAuthToken = async function () {
 };
 
 // Checking username and password for login for /users/login api
-userSchema.statics.findByCredentials = async (email, password) => {
-    const user = await User.findOne({ email });
+userSchema.statics.findByCredentials = async (phone, password) => {
+    const user = await User.findOne({ phone });
 
     if (!user) {
-        throw new Error("No Account registered with this email");
+        throw new Error("No Account registered with this phone number");
     }
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-        throw new Error("Invalid password of user");
+        throw new Error("Wrong Password");
     }
     return user;
 };

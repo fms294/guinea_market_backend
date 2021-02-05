@@ -1,11 +1,17 @@
 const express = require("express");
 const User = require("../model/Users");
+const Listing = require("../model/Listings");
 const router = new express.Router();
 const auth = require("../middleware/auth");
 const { sendForgetPasswordEmail } = require("../emails/account");
+const SendOtp = require("sendotp");
+const sendOtp = new SendOtp("MSG91");
 
 // Testing Get Router
-// router.get('/users', (req, res) => {
+// router.get('/users', async (req, res) => {
+//     await sendOtp.send("917575060118", "PRIIND", function (error, data) {
+//         console.log(data);
+//     });
 //     res.status(201).send('Hiiiiii');
 // });
 
@@ -25,7 +31,7 @@ router.post("/users/signup", async (req, res) => {
 router.post("/users/login", async (req, res) => {
     try {
         const user = await User.findByCredentials(
-            req.body.email,
+            req.body.phone,
             req.body.password
         );
         // auth token
@@ -45,6 +51,17 @@ router.post("/users/logout", auth, async (req, res) => {
         await req.user.save();
         res.status(200).send("Logout Success");
     } catch (e) {
+        res.status(500).send(e);
+    }
+});
+
+//Fetch owner
+router.get("/users/owner/:id", auth, async (req, res) => {
+    try{
+        const user = await User.findById(req.params.id);
+        const feed = await Listing.find({owner: req.params.id})
+        res.status(200).send({user, feed});
+    }catch (e) {
         res.status(500).send(e);
     }
 });

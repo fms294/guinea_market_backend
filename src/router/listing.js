@@ -22,6 +22,7 @@ router.post("/listing/add", auth, async (req,res) => {
     }
 });
 
+//Fetch all Listings
 router.get("/listing/fetch", auth, async(req,res) => {
     try {
         const listing = await Listing.find({});
@@ -31,6 +32,36 @@ router.get("/listing/fetch", auth, async(req,res) => {
         res.status(200).send(listing);
     } catch (e) {
         res.status(500).send(e);
+    }
+});
+
+//Fetch user's Listings
+router.get("/listing/fetchUserListing", auth, async (req, res) => {
+    try {
+        const listing = await Listing.find({ owner: req.user._id });
+        if (!listing) {
+            return res.status(404).send();
+        }
+        res.status(200).send(listing);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+});
+
+//Delete user's Listings
+router.delete("/listing/delete/:id", auth, async (req, res) => {
+    try {
+        const listing = await Listing.findOneAndDelete({
+            _id: req.params.id,
+            owner: req.user._id,
+        });
+
+        if (!listing) {
+            return res.status(404).send();
+        }
+        res.send(listing);
+    } catch (e) {
+        return res.status(500).send(e);
     }
 });
 
