@@ -1,6 +1,7 @@
 const express = require("express");
 const userRouter = require("./router/user");
 const listingRouter = require("./router/listing");
+const aboutRouter = require("./router/about");
 require("../src/db/mongoose");
 
 const app = express();
@@ -8,6 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(userRouter);
 app.use(listingRouter);
+app.use(aboutRouter);
 
 const port = process.env.PORT;
 

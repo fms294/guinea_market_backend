@@ -3,9 +3,9 @@ const Listing = require("../model/Listings");
 const auth = require("../middleware/auth");
 const router = new express.Router();
 
-// //Testing Get Router
+//Testing Get Router
 // router.get('/listing', (req, res) => {
-//     res.status(201).send('Hiiiiii');
+//     res.status(201).send('Hello');
 // });
 
 // Adding Listing

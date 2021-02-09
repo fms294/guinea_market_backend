@@ -41,8 +41,7 @@ const userSchema = mongoose.Schema(
                 }
             }
         ]
-    },
-    { timestamp: true }
+    }, { timestamps: true }
 )
 
 // For hiding password and tokens array

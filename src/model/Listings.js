@@ -52,7 +52,7 @@ const listingSchema = mongoose.Schema(
                 }
             }
         }
-    }, { timeStamp: true }
+    }, { timestamps: true }
 );
 
 
