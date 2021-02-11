@@ -4,8 +4,7 @@ const Listing = require("../model/Listings");
 const router = new express.Router();
 const auth = require("../middleware/auth");
 const { sendForgetPasswordEmail } = require("../emails/account");
-const SendOtp = require("sendotp");
-const sendOtp = new SendOtp("MSG91");
+const { send_sms }  = require("../sms/send_sms");
 
 // Testing Get Router
 // router.get('/users', async (req, res) => {
@@ -69,13 +68,14 @@ router.get("/users/owner/:id", auth, async (req, res) => {
 // User Forget Password otp generation
 router.post("/users/forgetPass", async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email });
-        // console.log(user.email);
+        const user = await User.findOne({ phone: req.body.phone });
+        //console.log(user.phone);
         if (!user) {
             return res.status(404).send();
         }
         const otp = Math.floor(1000 + Math.random() * 9000);
-        sendForgetPasswordEmail(user.email, user.username, otp);
+        //sendForgetPasswordEmail(user.email, user.username, otp);
+        send_sms(user.username, user.phone, otp);
         res.status(201).send({ user, otp });
     } catch (e) {
         console.log(e);
