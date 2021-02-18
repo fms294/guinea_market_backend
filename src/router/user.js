@@ -3,14 +3,10 @@ const User = require("../model/Users");
 const Listing = require("../model/Listings");
 const router = new express.Router();
 const auth = require("../middleware/auth");
-const { sendForgetPasswordEmail } = require("../emails/account");
 const { send_sms }  = require("../sms/send_sms");
 
 // Testing Get Router
 // router.get('/users', async (req, res) => {
-//     await sendOtp.send("917575060118", "PRIIND", function (error, data) {
-//         console.log(data);
-//     });
 //     res.status(201).send('Hiiiiii');
 // });
 
