@@ -12,7 +12,7 @@ const resHandler = (filename) => {
 }
 
 // Adding Listing
-router.post("/listing/add", auth, async (req,res) => {
+router.post("/add", auth, async (req,res) => {
     try{
         upload(req, res,(error) => {
             if(error){
@@ -49,7 +49,7 @@ router.post("/listing/add", auth, async (req,res) => {
 });
 
 //Fetch all Listings
-router.get("/listing/fetch", auth, async(req,res) => {
+router.get("/fetch", auth, async(req,res) => {
     try {
         const listing = await Listing.find({});
         if (!listing) {
@@ -62,7 +62,7 @@ router.get("/listing/fetch", auth, async(req,res) => {
 });
 
 //Fetch user's Listings
-router.get("/listing/fetchUserListing", auth, async (req, res) => {
+router.get("/fetchUserListing", auth, async (req, res) => {
     try {
         const listing = await Listing.find({ owner: req.user._id });
         if (!listing) {
@@ -75,7 +75,7 @@ router.get("/listing/fetchUserListing", auth, async (req, res) => {
 });
 
 //Delete user's Listings
-router.delete("/listing/delete/:id", auth, async (req, res) => {
+router.delete("/delete/:id", auth, async (req, res) => {
     try {
         const listing = await Listing.findOneAndDelete({
             _id: req.params.id,

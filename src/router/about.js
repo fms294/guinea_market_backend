@@ -2,11 +2,11 @@ const express = require("express");
 const router = new express.Router();
 
 // //Testing Get Router
-// router.get('/about', (req, res) => {
+// router.get('/', (req, res) => {
 //     res.status(201).send('Hello');
 // });
 
-router.get("/about/:str", (req,res) => {
+router.get("/:str", async (req,res) => {
     const str = req.params.str;
 
     if (str === "Contact us") {

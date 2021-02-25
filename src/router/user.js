@@ -6,12 +6,12 @@ const auth = require("../middleware/auth");
 const { send_sms }  = require("../sms/send_sms");
 
 // Testing Get Router
-// router.get('/users', async (req, res) => {
+// router.get('/', async (req, res) => {
 //     res.status(201).send('Hiiiiii');
 // });
 
 // Post request for Signup
-router.post("/users/signup", async (req, res) => {
+router.post("/signup", async (req, res) => {
     const user = new User(req.body);
     try {
         await user.save();
@@ -23,7 +23,7 @@ router.post("/users/signup", async (req, res) => {
 });
 
 // Post request for Login
-router.post("/users/login", async (req, res) => {
+router.post("/login", async (req, res) => {
     try {
         const user = await User.findByCredentials(
             req.body.phone,
@@ -38,7 +38,7 @@ router.post("/users/login", async (req, res) => {
 });
 
 // Post request for Logout
-router.post("/users/logout", auth, async (req, res) => {
+router.post("/logout", auth, async (req, res) => {
     try {
         req.user.tokens = req.user.tokens.filter((token) => {
             return token.token !== req.token;
@@ -51,7 +51,7 @@ router.post("/users/logout", auth, async (req, res) => {
 });
 
 //Fetch owner
-router.get("/users/owner/:id", auth, async (req, res) => {
+router.get("/owner/:id", auth, async (req, res) => {
     try{
         const user = await User.findById(req.params.id);
         const feed = await Listing.find({owner: req.params.id})
@@ -62,7 +62,7 @@ router.get("/users/owner/:id", auth, async (req, res) => {
 });
 
 // User Forget Password otp generation
-router.post("/users/forgetPass", async (req, res) => {
+router.post("/forgetPass", async (req, res) => {
     try {
         const user = await User.findOne({ phone: req.body.phone });
         //console.log(user.phone);
@@ -80,7 +80,7 @@ router.post("/users/forgetPass", async (req, res) => {
 });
 
 // Update User's password
-router.patch("/users/updatePassword/:id", async (req, res) => {
+router.patch("/updatePassword/:id", async (req, res) => {
     const updates = Object.keys(req.body);
     const allowUpdates = ["password"];
     const isValid = updates.every((update) => allowUpdates.includes(update));
