@@ -60,7 +60,7 @@ router.post("/add", auth, async (req,res) => {
                     req.files.map((item) => {
                         const data = resHandler(item.filename);
                         fullPath.push(data);
-                        name.push(item.path)
+                        // name.push(item.path)
                     })
                     const listing = new Listing({
                         ...req.body,
