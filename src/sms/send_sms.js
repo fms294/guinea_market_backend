@@ -7,7 +7,7 @@ const send_sms = (name, phone, otp) => {
         .create({
             body: `Hey ${name}, We've received a request to reset your password for Dibida App Account. If you didn't make this request ignore this SMS. Otherwise here is the Verification Code : ${otp} Thanks, The Dibida Team.`,
             from: '+14156690425',
-            to: `+00${phone}` //Country code and then the variable phone comes from the function call
+            to: `+224${phone}` //Country code and then the variable phone comes from the function call
         })
         .then(message => console.log("response of sms : ",message.sid));
 }
