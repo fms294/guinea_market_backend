@@ -5,6 +5,9 @@ const jwt = require("jsonwebtoken");
 
 const userSchema = mongoose.Schema(
     {
+        profile_img : {
+            type: String
+        },
         username: {
             required: true,
             type: String,

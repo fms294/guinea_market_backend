@@ -2,41 +2,7 @@ const express = require("express");
 const Listing = require("../model/Listings");
 const auth = require("../middleware/auth");
 const router = new express.Router();
-const upload = require("../middleware/upload");
-
-// const fs = require('fs');
-// const AWS = require('aws-sdk');
-
-// const s3 = new AWS.S3({
-//     accessKeyId: process.env.AWS_ACCESS_KEY,
-//     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-// });
-//
-// const uploadFile = (fileName) => {
-//     fs.readFile(fileName, (err, data) => {
-//         if (err) throw err;
-//         const params = {
-//             Bucket: 'guineamarket', // pass your bucket name
-//             Key: 'contacts.csv', // file will be saved as testBucket/contacts.csv
-//             Body: JSON.stringify(data, null, 2)
-//         };
-//         s3.upload(params, function(s3Err, data) {
-//             if (s3Err) throw s3Err
-//             console.log(`File uploaded successfully at ${data.Location}`)
-//         });
-//     });
-// };
-
-// router.post("/s3", async (req, res) => {
-//     try {
-//         // const body = req;
-//         // console.log("body", body);
-//         // res.send(body)
-//         uploadFile()
-//     } catch (err) {
-//         res.status(500).send(err);
-//     }
-// });
+const {product_images, s3} = require("../middleware/upload");
 
 const resHandler = (filename) => {
     const data = {
@@ -46,33 +12,24 @@ const resHandler = (filename) => {
 }
 
 // Adding Listing
-router.post("/add", auth, async (req,res) => {
+router.post("/add", [auth, product_images.array("images")], async (req,res) => {
     try{
-        upload(req, res,(error) => {
-            if(error){
-                res.send(error);
-            }else{
-                if(req.files === undefined ){
-                    res.send("undefined");
-                }else{
-                    let fullPath = [];
-                    // let name = [];
-                    req.files.map((item) => {
-                        const data = resHandler(item.filename);
-                        fullPath.push(data);
-                        // name.push(item.path)
-                    })
-                    const listing = new Listing({
-                        ...req.body,
-                        images:fullPath,
-                        owner: req.user._id
-                    });
-                    // uploadFile(name)
-                    listing.save();
-                    res.status(201).send(listing);
-                }
-            }
-        });
+        if(req.files === undefined ){
+            res.send("undefined");
+        }else{
+            let fullPath = [];
+            req.files.map((item) => {
+                const data = resHandler(item.location);
+                fullPath.push(data);
+            })
+            const listing = new Listing({
+                ...req.body,
+                images:fullPath,
+                owner: req.user._id
+            });
+            await listing.save();
+            res.status(201).send(listing);
+        }
     }catch (err) {
         res.status(400).send(err);
     }
@@ -144,7 +101,14 @@ router.delete("/delete/:id", auth, async (req, res) => {
             _id: req.params.id,
             owner: req.user._id,
         });
-
+        listing.images.map((item) => {
+            const str = item.url;
+            const res = str.split("/");
+            s3.deleteObject({
+                Bucket: process.env.BUCKET_NAME,
+                Key: res[res.length - 2]+"/"+res[res.length - 1]
+            },function (err,data){});
+        });
         if (!listing) {
             return res.status(404).send();
         }

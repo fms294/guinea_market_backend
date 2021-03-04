@@ -3,7 +3,8 @@ const User = require("../model/Users");
 const Listing = require("../model/Listings");
 const router = new express.Router();
 const auth = require("../middleware/auth");
-const { send_sms }  = require("../sms/send_sms");
+const { send_sms } = require("../sms/send_sms");
+const {profile_image, s3} = require("../middleware/upload");
 
 // Testing Get Router
 // router.get('/', async (req, res) => {
@@ -37,6 +38,33 @@ router.post("/login", async (req, res) => {
     }
 });
 
+//Patch User Profile Update
+router.patch("/updateProfile", [auth, profile_image.single("images")], async (req,res) => {
+    const updates = Object.keys(req.body);
+    const allowUpdates = [ "username", "profile_img"];
+    const isValid = updates.every((update) => allowUpdates.includes(update));
+    if (!isValid) {
+        return res.status(400).send({ error: "No such property to update" });
+    }
+    try{
+        //console.log("req....",req.file);
+        const user = await User.findById(req.user._id);
+        //console.log("updates..", updates)
+        updates.forEach((update) => {
+            if(req.body[update] === "NA"){
+                user[update] = req.file.location
+            } else {
+                user[update] = req.body[update]
+            }
+        });
+        await user.save();
+        const token = await user.generateAuthToken();
+        res.status(201).send({user, token});
+   } catch (e) {
+       res.status(400).send({ e: e.message });
+   }
+});
+
 // Post request for Logout
 router.post("/logout", auth, async (req, res) => {
     try {
@@ -50,7 +78,7 @@ router.post("/logout", auth, async (req, res) => {
     }
 });
 
-//Fetch owner
+//Fetch owner by ID
 router.get("/owner/:id", auth, async (req, res) => {
     try{
         const user = await User.findById(req.params.id);
