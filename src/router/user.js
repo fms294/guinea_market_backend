@@ -78,6 +78,16 @@ router.post("/logout", auth, async (req, res) => {
     }
 });
 
+//Fetch owner with token
+router.get("/owner", auth, async (req, res) => {
+    try{
+        const user = await User.findOne({_id: req.user._id});
+        res.status(200).send(user);
+    }catch (e) {
+        res.status(500).send(e);
+    }
+});
+
 //Fetch owner by ID
 router.get("/owner/:id", auth, async (req, res) => {
     try{
