@@ -49,7 +49,14 @@ router.patch("/updateProfile", [auth, profile_image.single("images")], async (re
     try{
         //console.log("req....",req.file);
         const user = await User.findById(req.user._id);
-        //console.log("updates..", updates)
+        if (user && user.profile_img !== "") {
+            const str = user.profile_img;
+            const res = str.split("/");
+            s3.deleteObject({
+                Bucket: process.env.BUCKET_NAME,
+                Key: res[res.length - 2]+"/"+res[res.length - 1]
+            },function (err,data){});
+        }
         updates.forEach((update) => {
             if(req.body[update] === "NA"){
                 user[update] = req.file.location

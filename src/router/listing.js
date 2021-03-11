@@ -36,9 +36,8 @@ router.post("/add", [auth, product_images.array("images")], async (req,res) => {
 });
 
 //Update the item
-router.patch("/update/:id", auth, async (req,res) => {
+router.patch("/update/:id", [auth, product_images.array("image")], async (req,res) => {
     const updates = Object.keys(req.body);
-    console.log(Object.keys(req.body));
     const allowUpdates = [
         "title",
         "description",
@@ -46,7 +45,8 @@ router.patch("/update/:id", auth, async (req,res) => {
         "main_category",
         "sub_category",
         "region",
-        "contact_phone"
+        "contact_phone",
+        "images"
     ];
     const isValid = updates.every((update) => allowUpdates.includes(update));
     if (!isValid) {
@@ -59,8 +59,33 @@ router.patch("/update/:id", auth, async (req,res) => {
         });
         if (!listing) {
             return res.status(404).send("No such listing");
+        } else {
+            updates.forEach((update) => {
+                if(update === "images") {
+                    listing.images.map((item) => {
+                        const str = item.url;
+                        const res = str.split("/");
+                        s3.deleteObject({
+                            Bucket: process.env.BUCKET_NAME,
+                            Key: res[res.length - 2]+"/"+res[res.length - 1]
+                        },function (err,data){});
+                    });
+                }
+            });
         }
-        updates.forEach((update) => (listing[update] = req.body[update]));
+        updates.forEach((update) => {
+            if(update === "images")
+            {
+                let fullPath = [];
+                req.files.map((item) => {
+                    const data = resHandler(item.location);
+                    fullPath.push(data);
+                })
+                listing[update] = fullPath;
+            }else {
+                listing[update] = req.body[update]
+            }
+        });
         await listing.save();
         res.status(201).send(listing);
     }catch (err) {
