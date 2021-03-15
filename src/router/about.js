@@ -13,6 +13,10 @@ router.get("/:str", async (req,res) => {
         res.status(201)
             .send("<H1>Contact us</H1>" +
                 "<p>You can directly contact us using this number 620826392, or email us on: dibida21@gmail.com</p>");
+    } else if (str === "Contactez-nous") {
+        res.status(201)
+            .send("<H1>Contactez-nous</H1>" +
+                "<p>Vous pouvez nous contacter directement en utilisant ce numéro 620826392, ou nous envoyer un courriel à: dibida21@gmail.com</p>");
     } else if (str === "Terms of use") {
         res.status(201)
             .send("<H1>Terms of use</H1>" +
@@ -36,6 +40,29 @@ router.get("/:str", async (req,res) => {
                 "<p>In case of dispute between you and Dibida we you encourage strongly to our contact in the first place to look for a solution amicably.</p>" +
                 "<H3>10. General</H3>" +
                 "<p>These conditions and other policies published on Dibida constitute the entirety of the agreement between Dibida and you ,replacing any agreement earlier .No relationship of agency , of partnership , business related , employee-employer or of franchisee-franchisor is intended or created by this Agreement. We can put update this Agreement at any time, updates taking effect at the time of your next publication or within 30 days following the publication of the updated policy on the application.</p>");
+    } else if (str === "Conditions d'utilisation") {
+        res.status(201)
+            .send("<H1> Conditions d'utilisation </H1>" +
+                "<H3> 1. Introduction </H3>" +
+                "<p> En accédant à l'application ou aux outils de Dibida, vous acceptez les conditions suivantes, y compris celles disponibles par lien hypertexte, qui sont conçues pour garantir que dibiba fonctionne correctement pour tous ses utilisateurs. Ces conditions d'utilisation constituent un accord juridiquement contraignant entre vous et dibida, et Waali multiservice après acceptation et utilisation de l'application. Vous acceptez ces conditions d'utilisation en cliquant sur \" Créer un compte \" quand vérifier sur l'application Dibida. </p> "+
+                "<H3> 2. Utilisez dibida </H3>" +
+                "<p> Comme condition de votre utilisation de dibida, vous acceptez de: ne violer aucune loi; non r Ajuster la publication; ne pas soumettre d'annonces menaçantes, injurieuses, diffamatoires, obscènes ou de caractère indécent; ne pas laisser tomber ou communiquer de faux documents ou trompeurs ; violer les droits de tiers, envoyer du spam, ou les lettres en chaîne, promouvoir les systèmes pyramidaux; distribuer des virus ou autres technologies pouvant nuire à Dibida ou aux intérêts ou à la propriété des utilisateurs de Dibida; imposer ou contribuer à imposer toute charge déraisonnable sur notre infrastructure ou interférer avec le bon fonctionnement de dibida; copier, modifier ou distribuer le contenu de toute autre personne sans son consentement; utiliser des robots, des scanners ou tout autre moyen automatisé pour accéder à Dibida et collecter le contenu de tout but sans notre autorisation écrite expresse; recueillir ou collecter les informations sur l'utilisateur, y compris même leurs numéros de téléphone, adresse e-mail, sans leur consentement; copier, modifier ou dés les droits d'hommage ou le contenu du site, des services, des applications ou des outils ou les droits d'auteur et des marques commerciales de Dibida; les articles de vente enfreignant ou violant d'autres droits d'auteur, marques ou autres droits de tiers.Vous n'êtes responsable que de toutes les informations que vous soumettez à Dibida et de toutes les conséquences qui pourraient découler de votre annonce. Nous nous réservons le droit, à notre discrétion, de refuser ou de supprimer le contenu que nous jugeons inapproprié ou enfreindre les conditions ci-dessus. Nous nous réservons également le droit, à notre discrétion, de limiter l'utilisation d'un utilisateur de Dibida de manière temporaire ou permanente, ou de refuser l'enregistrement d'un utilisateur. Si nous pensons que vous enfreignez ces conditions d'utilisation de quelque manière que ce soit et / ou que vous avez un comportement de l'application, nous pouvons informer à notre discrétion les autres utilisateurs de Dibida, qui ont été en contact avec vous et ils recommandent d'être prudents. </p> "+
+                "<H3> 3. Abus de dibida </H3>" +
+                "<p> D ibida et sa communauté veillent ensemble au bon fonctionnement de dibida, ainsi qu'à la sécurité de sa communauté. Veuillez signaler tout problème, contenu offensant et violation des règles en envoyant un e-mail ou en nous contactant directement par téléphone. Sans limiter les autres recours, nous pouvons émettre des avertissements, limiter ou mettre fin à notre service et supprimer certains contenus hébergés et prendre des mesures juridiques et techniques pour garder les utilisateurs en dehors de Dibida si nous pensons qu'ils créent des problèmes, porter à réaliser les droits de d'autres personnes ou agir d'une manière incompatible avec notre politique (y compris, mais sans s'y limiter, contourner les suspensions temporaires ou permanentes, ou le harcèlement des employés de Dibida ou d'autres utilisateurs). Cependant, si nous décidons de prendre l'une de ces mesures, supprimez certains contenus hébergé ou garder un utilisateur en dehors de Dibida, nous n'avons aucune obligation de surveiller les informations transmises ou stockées sur notre mise en œuvre et nos outils et nous n'acceptons aucune responsabilité pour le contenu non autorisé o r illégal sur Dibida ou l'utilisation de Dibida par les utilisateurs. </p> "+
+                "<H3> 4. Contenu </H3>" +
+                "<p> D ibida contient le contenu fourni par nous, vous et d'autres utilisateurs. D ibida est protégé par les lois sur le droit d'auteur et les traités internationaux. Le contenu publié sur ou via Dibida est protégé en tant que groupe de travail et / ou une compilation, conformément aux droits d'auteur, lois et conventions internationales. Vous acceptez de ne pas copier, distribuer ou modifier le contenu de dibida sans notre consentement écrit exprès. Vous ne pouvez pas décompiler ou désassembler, faire de l'ingénierie inverse ou tenter autrement de découvrir le code source contenu sur Dibida. Sans limiter cela à ce qui précède, vous acceptez de ne pas reproduire, copier, vendre, revendre ou exploiter à des fins qui relèvent de tout aspect de Dibida (autre que votre propre contenu). Lorsque vous fournissez le contenu, vous nous accordons et déclarons que vous avez le droit de nous accorder une sous-licence non exclusive, globale, perpétuelle, irrévocable (pour plusieurs titres) pour exercer tous les droits d'auteur, publicité, marques, design, données de base et les droits de propriété intellectuelle sur le contenu ou dans tout média tel qu'il est maintenant ou plus tard. </p> "+
+                "<H3> 5. Violations </H3>" +
+                "<p> Vous n'aurez pas besoin de publier sur du contenu qui enfreint les droits de tiers. Cela inclut, mais sans s'y limiter, le contenu pour lequel la porte a atteint la propriété des droitsy intellectuels tels que les droits d'auteur, le design et la marque (par exemple, la soumission d'articles contrefaits à la vente). Un grand nombre de produits de toutes natures sont proposés sur dibida par des particuliers. Les parties titulaires, notamment titulaires de droits d'auteur, droits de marque ou autres droits, peuvent signaler toute publicité susceptible de porter atteinte à leurs droits et soumettre une demande de suppression du ad .Si un représentant légal du parti nous tient des points si corrects, les produits portant atteinte aux droits de propriété intellectuelle seront supprimés par Dibida. </p> "+
+                "<H3> 6. Responsabilité </H3>" +
+                "<p> Rien dans ces conditions ne limite notre responsabilité en cas de signalement de fraude, de décès ou de blessure résultant de notre négligence ou de la négligence de nos agents ou employés. Vous acceptez de ne pas nous tenir responsables des choses que d'autres utilisateurs publient ou faire. Nous vérifions les publications des utilisateurs mais ne sommes pas impliqués dans les transactions réelles entre les utilisateurs. Étant donné que la plupart du contenu de Dibida provient d'autres utilisateurs, nous ne garantissons aucune précision des publications ou communications des utilisateurs ou la qualité, la sécurité ou la légalité de ce qui est proposé. Dans tous les cas, nous déclinons la responsabilité de toute description pour la publication d'informations illégales, menaçantes, abusives, diffamatoires, obscènes ou indécentes, ou de tout matériel qui viole ou enfreint les droits de tout autre personne, y compris, mais sans s'y limiter, toute transmission constituant ou encourageant un comportement qui constituerait un délit pénal, engagerait la responsabilité civile ou violerait un quelconque o de toute façon toute loi applicable. Vous acceptez que nous puissions garantir un accès en continu, sans erreur ou sécurisé dans nos services ou que les défauts du service seront corrigés. Bien que nous fassions tous les efforts raisonnables pour maintenir un service ininterrompu, nous ne pouvons garantir et nous ne donnons aucune promesse ou garantie (expresse ou implicite) concernant le fonctionnement et la disponibilité de l'Application. En conséquence, dans la mesure permise par la loi, nous déclinons expressément toutes les garanties, représentations et conditions, expresses ou implicites, y compris y compris celles de marché de qualité des ventes à valeur, de durabilité, de conformité aux exigences spécifiques et celles découlant de la loi. . Nous ne sommes pas responsables de toute perte d'argent (y compris également de profit), de bonne volonté ou de réputation, ou de tout dommage particulier, indirect ou consécutif résultant de votre utilisation ou de votre incapacité à utiliser Dibida, même si vous nous en informez ou si nous pourrait raisonnablement prévoir la possibilité de tels dommages. </p> "+
+                "<H3> 7. Exemption </H3>" +
+                "<p> Si vous avez un différend avec un ou plusieurs utilisateurs de Dibida, nous vous exonérons (ainsi que nos dirigeants, administrateurs, agents, filiales, associés commerciaux et employés) de toutes les réclamations, demandes et dommages-intérêts (présents et futurs ) de tout type et de toute nature, connus ou inconnus, découlant de ou liés de quelque manière que ce soit à de tels litiges. </p> "+
+                "<H3> 8. Informations personnelles </H3>" +
+                "<p> En utilisant Dibida, vous c onsentez à la collecte, au transfert, au stockage et à l'utilisation de vos informations personnelles par Dibida sur des serveurs situés aux États-Unis, ou à tout autre endroit, comme décrit plus en détail dans notre Politique de confidentialité. Vous acceptez également pour recevoir des communications marketing de notre part ou de la part des sites associés Dibida sauf si vous nous disons que vous préférez ne pas recevoir de telles communications. </p> "+
+                "<H3> 9. Résolution des litiges </H3>" +
+                "<p> En cas de litige entre vous et Dibida nous vous encourageons vivement à notre contact en premier lieu pour rechercher une solution à l'amiable. </p>" +
+                "<H3> 10. Général </H3>" +
+                "<p> Les présentes conditions et autres politiques publiées sur Dibida constituent l'intégralité de l'accord entre Dibida et vous, en remplacement de tout accord antérieur. Aucune relation d'agence, de partenariat, d'entreprise, d'employé-employeur ou de franchisé-franchiseur n'est prévue ou créé par cet accord. Nous pouvons mettre à jour cet accord à tout moment, les mises à jour prenant effet au moment de votre prochaine publication ou dans les 30 jours suivant la publication de la politique mise à jour sur l'application. </p> ");
     } else if (str === "Privacy Policy") {
         res.status(201)
             .send("<H1>Policy Privacy</H1>" +
@@ -90,6 +117,60 @@ router.get("/:str", async (req,res) => {
                 "<p>We tolerate any form of abuse enforcement . There you are allowed to add other users to Dibida on your list mailing (email or mail postal) for purposes trade , even if a user has purchased a thing of you , except if it has given its agreement on purpose . If you are witness of an abuse or a fraud on our app , thank you to inform .It is also forbidden to use our tools of communication available to users to send spam or the content that violates our Terms of Use in any other way. For your security , we may scan messages automatically and check for spam, viruses, phishing, and other malicious activity or illegal or prohibited content . The messages we send through these resources , are saved for a period of time limited.</p>" +
                 "<H5>Third</H5>" +
                 "<p>Unless otherwise explicitly in this Policy Privacy Policy , this Policy Privacy Policy applies only to the use and transfer of information that we collect from of you . Dibida has no control over the privacy policies put in place by third parties and which may apply to you . When we collaborate with third parties or make call to their tools , we indicate explicitly what policy privacy you respect . As a result , we you encourage strongly to ask questions and you learn before to share your data personal with others.</p>");
+    } else if (str === "Politique de confidentialité") {
+        res.status(201)
+            .send("<H1> Politique de confidentialité </H1>" +
+                "<H3> 1. Informations générales </H3>" +
+                "<p> La présente politique de confidentialité décrit la politique de Dibida concernant la collecte, l'utilisation de la sauvegarde, le partage et la protection de vos données personnelles (\" Politique de confidentialité \"). Cette politique de confidentialité s'applique à l'application dibida. </p>" +
+    "<H3> 2. Cadre et accord </H3>" +
+    "<p> En utilisant dibida, vous donnez votre consentement explicite à dibida pour la collecte, l'utilisation, la divulgation et la conservation de vos informations personnelles par nous, comme décrit dans la présente politique de confidentialité et nos conditions d'utilisation.D ibida peut apporter des modifications que le présente politique de confidentialité de temps à autre.Nous vous recommandons de consulter régulièrement.Si nous apportons les modifications que nous considérons importantes, nous vous en informons par le biais de notre mise en œuvre.La politique de confidentialité modifiée entre en vigueur immédiatement après ses premières fins de publication. Les présentes politique de confidentialité entre en vigueur le 15 Fevrier 2021. </p> "+
+    "<H3> 3. Les données collectées sur notre application </H3>" +
+    "<p> Vous pouvez visiter notre application sans créer de compte. Lorsque vous nous choisissez de fournir vos données personnelles, vous acceptez que ces informations soient envoyées et stockées sur nos serveurs. Voici les types d'informations que nous collectons: </ p> "+
+    "<H3> 4. Informations collectées automatiquement </H3>" +
+    "<p> Lorsque vous téléchargez notre mise en œuvre, utilisez nos services et / ou répondez à des publicités ou à tout autre contenu, nous collectons automatiquement les informations fournies par votre ordinateur, votre téléphone portable ou d'autres types d'appareils permettant d'accéder au site. Ces informations comprennent, mais ne sont pas limités à: </p> "+
+    "<ul>" +
+    "<li> Informations après votre interaction avec notre site Web et nos services, y compris, mais sans s'y limiter, l'ID de l'appareil, le type d'appareil, les informations de géolocalisation, les informations sur l'ordinateur et la connexion, les statistiques sur pages vues, le trafic vers et depuis www.marche.gratis, l'URL pour référencer les données des annonces, l'adresse IP et les informations standard du journal Web; et </li> "+
+    "<li> Informations collectées par le biais de cookies, de balises Web et d'autres technologies similaires. Les informations que nous fournissons, nous recueillons et conserverons toutes les informations que vous entrez sur notre site Web ou que vous fournissez en utilisant nos services. Ces informations incluent, mais sont non limité à: </li> "+
+    "<li> Informations requises lors de votre inscription sur l'application ou de l'utilisation des Services, telles que: votre nom, numéro de téléphone, adresse email, numéro de téléphone ou informations financières; </li>" +
+    "<li> Informations supplémentaires que vous pouvez nous fournir via les réseaux sociaux ou d'autres services intégrés. </li>" +
+    "<li> Informations fournies suite à la résolution d'un litige, e-mail envoyé à notre application ou à notre adresse physique; et </li>" +
+    "<li> Des informations sur votre emplacement et celui de votre équipement, il comprenait le numéro identifiant l'un de vos appareils, si vous avez activé le service sur votre appareil mobile; </li>" +
+    "<li> Informations provenant d'autres sources: nous pouvons recevoir ou collecter des informations sur vous, auprès de tiers et les intégrer à nos informations sur votre compte. Ces informations incluent, mais sans s'y limiter: les données démographiques, la navigation dans les données, le les données de contact supplémentaires et les données vous concernant provenant d'autres sources, telles que les autorités de l'État, dans les conditions autorisées par la loi. </li> "+
+    "</ul>" +
+    "<H3> 5. Utilisation des données vous concernant </H3>" +
+    "<p> Vous acceptez que vos données personnelles (voir ci-dessus) soient utilisées pour: </p>" +
+    "<ul>" +
+    "<li> Vous garantir l'accès à nos services et à notre assistance client par e-mail ou par téléphone; </li>" +
+    "<li> Prévenir, détecter ou enquêter sur les activités potentiellement interdites ou illégales, la fraude et en abuser pour la sécurité et appliquer nos conditions d'utilisation; </li>" +
+    "<li> Personnalisez, mesurez et améliorez nos services, notre contenu et nos annonces. </li>" +
+    "<li> Vous contactez par e-mail, vous envoyez des notifications, des messages (SMS) ou par téléphone pour vous enquêter sur la qualité de nos services; </li>" +
+    "<li> Pour des activités de marketing ciblées, des mises à jour et des offres promotionnelles basées sur vos préférences de message (le cas échéant), ou à toute autre fin, comme indiqué dans la présente politique de confidentialité; </li>" +
+    "<li> Vous fournir d'autres services demandés comme indiqué dans les informations que nous avons collectées. </li>" +
+    "</ul>" +
+    "<H3> 6. Partage d'informations </H3>" +
+    "<p> Nous pouvons vous proposer des services d'inscription que vous autorisez l'accès à l'application avec vos informations d'identification. Si vous nous donnez accès à vos données personnelles stockées sur des sites tiers, l'étendue de l'accèsCes informations personnelles varieront en fonction de l'application et seront déterminées à l'époque par les paramètres de votre navigateur et votre consentement. Transfert de vos informations personnelles à des tiers: Nous pouvons divulguer vos informations personnelles à des tiers conformément à la présente politique de confidentialité et aux lois et réglementations applicables. Comme mentionné plus loin dans la section 4, nous ne divulguerons pas vos données personnelles à des tiers souhaitant les utiliser à des fins commerciales sans avoir préalablement reçu votre consentement exprès. Nous pouvons partager vos données personnelles avec: </p> "+
+    "<ul> \ n" +
+    "<li> Les fournisseurs avec lesquels nous avons signé un contrat et avec lesquels nous travaillons pour améliorer nos services sur l'application, tels que les prestataires de services financiers, les agences marketing et d'assistance technique. Dans de tels cas, les données personnelles doivent rester sous le contrôle de dibida. </li> "+
+    "<li> Certains tiers (tels que les titulaires de droits de propriété intellectuelle, les autorités de contrôle, la taxe gouvernementale, l'investisseur, la police et d'autres autorités réglementaires) si nous sommes obligés par la loi ou conformément à notre Politique de confidentialité . </li> "+
+    "<li> Nous pouvons partager vos données personnelles: pour nous conformer à une obligation légale ou à une décision judiciaire; ou </li>" +
+    "<li> Si cela s'avère nécessaire pour la prévention, la détection ou la poursuite judiciaire contre un délit criminel, tel que fraude, tromperie, poursuite, ou </li>" +
+    "<li> S'il s'avère nécessaire pour respecter notre politique ou pour la protection des droits et libertés individuels; </li>" +
+    "<li> À d'autres tiers avec lesquels vous avez consenti à partager vos données personnelles via (comme ci-dessus s'applique), par exemple .. dans le cadre d'une collaboration. </li>" +
+    "<li> Pour les entreprises avec lesquelles nous avons l'intention de fusionner dans un contexte de réorganisation ou qui ont acheté notre société;. </li>" +
+    "<li> Chez un titulaire de propriété intellectuelle, s'il détient un droit de propriété intellectuelle ou un ou un intermédiaire de bonne foi estime qu'une annonce viole les droits du propriétaire. Avant de fournir toute information personnelle, le propriétaire de l'adresse IP conclura un accord stipulant, entre autres, que les informations ne sont fournies qu'à la stricte condition que le -ci soit utilisé exclusivement dans le cadre d'une procédure judiciaire et / ou afin d'obtenir un avis juridique et / ou de répondre aux questions de l'annonceur concerné. </li> "+
+    "</ul>" +
+    "<p> Sans que nous restreignions tout ce qui précède, nous nous engageons également - dans nos efforts à respecter votre vie privée et à protéger l'application c GAIN DE toute personne ou partie malveillante - à ne pas divulguer vos données personnelles à des tiers sans un décision de justice ou une demande officielle du gouvernement selon l'oi applicable, sauf si nous croyons de bonne foi qu'une telle divulgation (i) est nécessaire aux fins de, ou en relation avec, toute justice procédurale (qui comprenait les procédures potentiel judiciaire), aux fins d'obtenir des conseils juridiques ou est nécessaire aux fins d'établir, d'exercer ou de défendre les droits légaux, (ii) est nécessaire pour empêcher ou pour la détection du crime, la capture ou la poursuite des contrevenants , ou dans l'évaluation ou la perception des taxes ou frais, (iii) est demandée par un organisme exerçant les fonctions de régulation publique. </p> "+
+    "<H3> 7. Informations partagées Dibida </H3>" +
+    "<p> Notre application permet aux utilisateurs de partager les annonces et d'autres types d'informations avec d'autres utilisateurs, et leur permet d'accéder aux informations partagées. Puisque notre application vous permet également d'entrer directement en contact avec un acheteur ou un vendeur, nous vous recommandons de faire attention à la manière dont vous partagez vos données personnelles avec autrui.Vous êtes la seule et exclusive responsabilité des données que vous partagez lors de la mise en œuvre et par conséquent nous pouvons garantir le caractère privé ou la sécurité des données que vous avez partagé avec d'autres utilisateurs. </p> "+
+    "<H3> 8. Fins commercial </H3>" +
+    "<p> Vous acceptez que nous puissions utiliser les informations que nous collectons pour vous envoyer les offres, personnalisées ou non, ou pour vous contacter par téléphone sur les produits ou services proposés par Dibida ou les sociétés travaillant avec Dibida. Nous n'y allons pas ne vendez, ni ne prêtez vos données personnelles à des tiers dans le cadre de leurs campagnes de marketing sans votre accord exprès. Nous pouvons combiner vos informations avec des informations que nous recueillons auprès d'autres sociétés et les utiliser pour améliorer et personnaliser nos services et fonctionnalités. </p> "+
+    "<H3> 9. Protection et sauvegarde de vos informations personnelles </H3>" +
+    "<p> Nous protégeons vos informations en utilisant les mesures de techniques de sécurité et administratives (telles que les pare-feu, le cryptage des données et les contrôles d'accès physical et administratif aux données et serveurs) qui limitent les risques de perte, d'abus, d'accès aux non-autorisés, de divulgation et d'altération. Cependant, si vous pensez être victime d'un piratage, merci de nous contacter. Nous stockerons les données dans les limites autorisées par la réglementation en vigueur et les supprimerons lorsqu'elles le seront plus utiles pour les raisons décrites ci-dessus. </p> "+
+    "<H3> 10. Autres informations </H3>" +
+    "<H5> Abus et communications non sollicitées (\" spam \") </H5>" +
+    "<p> Nous tolérons toute forme de répression des abus. Là, vous êtes autorisé à ajouter d'autres utilisateurs à Dibida sur votre liste de diffusion (e-mail ou courrier postal) à des fins commerciales, même si un utilisateur a acheté une chose de vous, sauf si elle a donné son accord exprès. Si vous êtes témoin d'un abus ou d'une fraude sur notre application, merci de le signaler. Il est également interdit d'utiliser nos outils de communication mis à la disposition des utilisateurs pour envoyer du spam ou le contenu qui enfreint nos Conditions de Utiliser de toute autre manière. Pour votre sécurité, nous pouvons analyser automatiquement les messages et rechercher les spams, virus, hameçonnage et autres activités malveillantes ou contenus illégaux ou interdits. Les messages que nous envoyons via ces ressources sont conservés pendant une période limitée. </p> "+
+    "<H5> Troisième </H5>" +
+    "<p> Sauf indication contraire explicite dans cette politique de confidentialité, cette politique de confidentialité s'applique uniquement à l'utilisation et au transfert des informations que nous recueillons auprès de vous. Dibida n'a aucun contrôle sur les politiques de confidentialité mises en place par des tiers et qui peuvent s'appliquent à vous. Lorsque nous collaborons avec des tiers ou appelons leurs outils, nous indiquons explicitement la politique de confidentialité que vous respectez. En conséquence, nous vous encourageons vivement à poser des questions et vous apprenez avant à partager vos données personnelles avec d'autres. </p> ");
     } else if (str === "Publication rules") {
         res.status(201)
             .send("<H1>Publication rules</H1>" +
@@ -127,6 +208,43 @@ router.get("/:str", async (req,res) => {
                 "<li>The deals allow to earn to money quickly</li>" +
                 "</ul>" +
                 "<p>All articles, products and services considered as illegal in Guinea are forbidden !</p>");
+    } else if (str === "Règles de publication") {
+        res.status(201)
+            .send("<H1>Règles de publication</H1>" +
+                "<p> Pour la sécurité et le confort des utilisateurs de Dibida, notre équipe est particulièrement attentive à ce que toutes les annonces publiées soient conformes à nos règles. Pour éviter que votre annonce ne soit bloquée ou mise en veille pour être examinée, veuillez lire attentivement le règles suivantes avant de publier une annonce: </p> "+
+                "<ul>" +
+                "<li> Toutes les annonces doivent être placées en ligne avec une image sans filigrane (sauf pour les classes emplois et services) </li>" +
+                "<li> Toutes les annonces doivent avoir les numéros de téléphone et l'adresse e-mail valide </li>" +
+                "<li> Tous les produits et services doivent être réels, acquis légalement (non volés) et situés en Guinée </li>" +
+                "<li> La description de l'annonce doit être claire et concise et la photo doit clairement illustrer le produit ou le service proposé </li>" +
+                "<li> La description de l'annonce ne peut pas inclure de liens vers des sites Web tiers </li>" +
+                "<li> Il n'est pas permis de mettre plusieurs produits ou services dans la même annonce: chaque article doit être publié séparément (à l'exception des sets, par exemple, vaisselle, etc.) </li>" +
+                "<li> Les annonces postées en double sont interdites: vous ne pouvez pas publier une annonce avec le même contenu qu'une autre annonce déjà active sur le site </li>" +
+                "<li> Les accords irréalistes doivent être bloqués sur la base des critères de Dibida </li>" +
+                "<li> Tous les articles, produits et services considérés comme illégaux en Guinée sont interdits. Voir la liste des articles illégaux ci-dessous </li>" +
+                "<li> Tout contenu abusif est interdit (images ou langage offensants) est interdit </li>" +
+                "<li> Les annonces demandant des dons ou pour aider ne sont pas autorisées </li>" +
+                "</ul>" +
+                "<p> <b> Veuillez noter que les éléments suivants sont interdits sur dibida </b> </p>" +
+                "<ul>" +
+                "<li> Les armes: les fusils, les couteaux et les épées, les explosifs, les gaz lacrymogènes, les coups de poing américains, les matraques, etc. </li>" +
+                "<li> Drogues, alcool, drogues, tabac et autres produits liés au tabagisme </li>" +
+                "<li> Les feux d'artifice et les produits dérivés </li>" +
+                "<li> Tous les produits pharmaceutiques ou médicaux sont disponibles uniquement sur ordonnance </li>" +
+                "<li> Les espèces menacées d'extinction en vertu de toute loi locale ou internationale, et les plantes et animaux exotiques </li>" +
+                "<li> Les pierres précieuses </li>" +
+                "<li> Les organes humains </li>" +
+                "<li> Articles contrefaits </li>" +
+                "<li> Copies illégales / piratées dans des logiciels ou des éléments audiovisuels, y compris également les cartes mémoire ou autre périphérique de stockage, par exemple. DVD, CD et livres </li>" +
+                "<li> Services psychiques, vaudous ou de magie noire et tarot, horoscopes </li>" +
+                "<li> Les produits naturels qui prétendent guérir les maladies. </li>" +
+                "<li> Les coupons, bons et cartes de crédit </li>" +
+                "<li> Le contenu ou les services à caractère sexuel explicite </li>" +
+                "<li> Pyramide des ventes et offre d'emplois pour \" travailler à domicile \ </li>" +
+                "<li> L'argent des opérations - les annonces mettant en vedette l'échange de devises au cours légal </li>" +
+                "<li> Les offres permettent de gagner de l'argent rapidement </li>" +
+                "</ul>" +
+                "<p> Tous les articles, produits et services considérés comme illégaux en Guinée sont interdits! </p>");
     } else if (str === "Advice to users") {
         res.status(201)
             .send("<H1>User advice</H1>" +
@@ -167,6 +285,47 @@ router.get("/:str", async (req,res) => {
                 "<li>An ad with photos gets 10 more views !</li>" +
                 "\n" +
                 "Accompany your product description with one or more good quality photos , preferably from different angles and in good light. You sell your item ten times more quickly !</li>" +
+                "</ol>");
+    } else if (str === "Conseils aux utilisateurs") {
+        res.status(201)
+            .send("<H1> Conseils aux utilisateurs </H1>" +
+                "<H2> 1. Consignes de sécurité </H2>" +
+                "<H3> Nos conseils pour acheter en toute sécurité sur Dibida </H3>" +
+                "<ul>" +
+                "<li> Prenez rendez-vous avec le vendeur dans un lieu public que vous connaissez </li>" +
+                "<li> Ne payez rien avant pour vérifier la qualité du produit que vous achetez </li>" +
+                "<li> Évitez de payer ou de transférer de l'argent pour avancer </li>" +
+                "<li> Attention aux prix trop bas </li>" +
+                "<li> Ne donnez pas d'informations personnelles (coordonnées bancaires, numéro de carte de crédit / débit) </li>" +
+                "</ul>" +
+                "<H3> Nos conseils pour vendre en toute sécurité sur Dibida </H3>" +
+                "<ul>" +
+                "<li> Demandez toujours un numéro de téléphone aux acheteurs que vous contactez par e-mail et vérifiez que le -ci est valide </li>" +
+                "<li> Évitez d'être payé via des services non sécurisés pour transférer de l'argent. </li>" +
+                "<li> Attention aux acheteurs situés à l'étranger, Dibida est un site d'achat et de vente 100% local </li>" +
+                "<li> N'envoyez jamais votre article à un acheteur avant qu'il ne vous ait payé </li>" +
+                "</ul>" +
+                "<H2> 2. Conseils pour détecter un fraudeur </H2>" +
+                "<p> Portez une attention particulière lorsque: </p>" +
+                "<ul>" +
+                "<li> Le nom du vendeur ou du magasin est à l'étranger </li>" +
+                "<li> La description contient un compte Skype, un prix en devise étrangère ($ ou € par exemple) </li>" +
+                "<li> Le prix est trop précis. Les fraudeurs ont tendance à convertir un prix en dollars en devise locale, ce qui donne les prix très détaillés. </li>" +
+                "</ul>" +
+                "<p> Si vous pensez qu'une annonce est frauduleuse, veuillez nous contacter. </p>" +
+                "<H2> 3. Comment vendre rapidement </H2>" +
+                "<ol type = 'a'>" +
+                "<li> Choisissez le bon prix </li>" +
+                "\n" +
+                "Pour choisir le bon prix pour votre article, vous pouvez consulter des annonces similaires sur le site. Plus votre prix sera compétitif, plus vous vendez votre article rapidement. \n" +
+                "\n" +
+                "<li> Rédigez une description détaillée </li>" +
+                "\n" +
+                "Une description minutieuse de votre produit aidera l'utilisateur à bien comprendre ce que vous vendez. Préférez un titre court et précis. Si votre produit est endommagé, mentionnez-le. \n" +
+                "\n" +
+                "<li> Une annonce avec des photos obtient 10 vues supplémentaires! </li>" +
+                "\n" +
+                "Accompagnez votre description de produit d'une ou plusieurs photos de bonne qualité, de préférence sous différents angles et sous un bon éclairage. Vous vendez votre article dix fois plus rapidement! </li>" +
                 "</ol>");
     } else {
         res.status(201).send("<H1>Not Valid link provided with end-point : /" + str + " </H1>");
