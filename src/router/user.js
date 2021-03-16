@@ -3,7 +3,7 @@ const User = require("../model/Users");
 const Listing = require("../model/Listings");
 const router = new express.Router();
 const auth = require("../middleware/auth");
-const { send_sms } = require("../sms/send_sms");
+const { send_sms , registration_otp } = require("../sms/send_sms");
 const {profile_image, s3} = require("../middleware/upload");
 
 // Testing Get Router
@@ -13,8 +13,8 @@ const {profile_image, s3} = require("../middleware/upload");
 
 // Post request for Signup
 router.post("/signup", async (req, res) => {
-    const user = new User(req.body);
     try {
+        const user = new User(req.body);
         await user.save();
         const token = await user.generateAuthToken();
         res.status(201).send({ user, token });
@@ -146,6 +146,21 @@ router.patch("/updatePassword/:id", async (req, res) => {
         res.send(user);
     } catch (e) {
         res.status(400).send(e.toString());
+    }
+});
+
+router.post("/register_OTP", async (req,res) => {
+    try {
+        const user = await User.findOne({phone: req.body.phone} );
+        if ( user ) {
+           throw new Error("User already registered")
+        } else {
+            const otp = Math.floor(1000 + Math.random() * 9000);
+            registration_otp(req.body.username, req.body.phone, otp);
+            res.status(201).send({otp});
+        }
+    } catch (e) {
+        res.status(500).send({e: e.message});
     }
 });
 
