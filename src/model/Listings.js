@@ -35,7 +35,7 @@ const listingSchema = mongoose.Schema(
             type: String,
             trim: true
         },
-        region:{
+        prefecture:{
             type: String,
             required: true,
             trim: true

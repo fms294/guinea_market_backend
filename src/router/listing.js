@@ -44,7 +44,7 @@ router.patch("/update/:id", [auth, product_images.array("image")], async (req,re
         "price",
         "main_category",
         "sub_category",
-        "region",
+        "prefecture",
         "contact_phone",
         "images"
     ];
