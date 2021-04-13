@@ -69,4 +69,16 @@ router.get("/conversation/:id", auth, async (req,res) =>{
    }
 });
 
+router.delete("/delete/:id", auth, async (req,res) => {
+    const message = await Message.find({});
+    let final = {};
+    await message.map(async (item) => {
+        if ((item.sender.toString() === req.params.id && item.receiver.toString() === req.user._id.toString()) || (item.sender.toString() === req.user._id.toString() && item.receiver.toString() === req.params.id)) {
+            console.log(item._id);
+            final = await Message.findOneAndDelete({_id: item._id})
+        }
+    })
+    res.send(final);
+})
+
 module.exports = router;
