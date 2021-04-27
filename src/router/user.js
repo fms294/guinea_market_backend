@@ -110,7 +110,7 @@ router.get("/owner", auth, async (req, res) => {
 });
 
 //Fetch owner by ID
-router.get("/owner/:id", auth, async (req, res) => {
+router.get("/owner/:id", async (req, res) => {
     try{
         const user = await User.findById(req.params.id);
         const feed = await Listing.find({owner: req.params.id})

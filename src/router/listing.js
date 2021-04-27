@@ -94,7 +94,7 @@ router.patch("/update/:id", [auth, product_images.array("image")], async (req,re
 });
 
 //Fetch all Listings
-router.get("/fetch", auth, async(req,res) => {
+router.get("/fetch", async(req,res) => {
     try {
         const listing = await Listing.find({});
         if (!listing) {
