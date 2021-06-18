@@ -12,11 +12,11 @@ router.get("/:str", async (req,res) => {
     if (str === "Contact us") {
         res.status(201)
             .send("<H1>Contact us</H1>" +
-                "<p>You can directly contact us using this number 620826392, or email us on: dibida21@gmail.com</p>");
+                "<p>You can directly contact us using this number 620826392, or email us on: dibida@waaligroup.com</p>");
     } else if (str === "Contactez-nous") {
         res.status(201)
             .send("<H1>Contactez-nous</H1>" +
-                "<p>Vous pouvez nous contacter directement en utilisant ce numéro 620826392, ou nous envoyer un courriel à: dibida21@gmail.com</p>");
+                "<p>Vous pouvez nous contacter directement en utilisant ce numéro 620826392, ou nous envoyer un courriel à: dibida@waaligroup.com</p>");
     } else if (str === "Terms of use") {
         res.status(201)
             .send("<H1>Terms of use</H1>" +
