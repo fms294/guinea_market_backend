@@ -17,7 +17,6 @@ router.post("/signup", async (req, res) => {
         const user = new User(req.body);
         await user.save();
         const token = await user.generateAuthToken();
-        console.log(user)
         res.status(201).send({ user, token });
     } catch (err) {
         res.status(400).send(err);
@@ -39,7 +38,7 @@ router.post("/login", async (req, res) => {
             req.body.phone,
             req.body.password
         );
-        console.log(user)
+        console.log(user.createdAt)
         // auth token
         updates.forEach((update) => {
             if(update === "notification_token") {
