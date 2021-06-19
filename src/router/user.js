@@ -17,6 +17,7 @@ router.post("/signup", async (req, res) => {
         const user = new User(req.body);
         await user.save();
         const token = await user.generateAuthToken();
+        console.log(user)
         res.status(201).send({ user, token });
     } catch (err) {
         res.status(400).send(err);
@@ -38,6 +39,7 @@ router.post("/login", async (req, res) => {
             req.body.phone,
             req.body.password
         );
+        console.log(user)
         // auth token
         updates.forEach((update) => {
             if(update === "notification_token") {
@@ -114,6 +116,7 @@ router.get("/owner/:id", async (req, res) => {
     try{
         const user = await User.findById(req.params.id);
         const feed = await Listing.find({owner: req.params.id})
+        console.log(user)
         res.status(200).send({user, feed});
     }catch (e) {
         res.status(500).send(e);
