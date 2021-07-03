@@ -3,6 +3,7 @@ const User = require("../model/Users");
 const Listing = require("../model/Listings");
 const router = new express.Router();
 const auth = require("../middleware/auth");
+const {change_password_send_sms} = require("../sms/send_sms");
 const { send_sms , registration_otp } = require("../sms/send_sms");
 const {profile_image, s3} = require("../middleware/upload");
 
@@ -16,6 +17,7 @@ router.post("/signup", async (req, res) => {
     try {
         const user = new User(req.body);
         await user.save();
+        console.log('user', user)
         const token = await user.generateAuthToken();
         res.status(201).send({ user, token });
     } catch (err) {
@@ -26,7 +28,7 @@ router.post("/signup", async (req, res) => {
 // Post request for Login
 router.post("/login", async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowUpdates = ["notification_token", "phone", "password"];
+    const allowUpdates = ["notification_token", "email", "phone", "password"];
     const isValid = updates.every((update) => allowUpdates.includes(update));
 
     if (!isValid) {
@@ -35,6 +37,34 @@ router.post("/login", async (req, res) => {
 
     try {
         const user = await User.findByCredentials(
+            req.body.phone,
+            req.body.password
+        );
+        // auth token
+        updates.forEach((update) => {
+            if(update === "notification_token") {
+                user[update] = req.body[update];
+            }
+        });
+        await user.save();
+        const token = await user.generateAuthToken();
+        res.send({ user, token });
+    } catch (e) {
+        res.status(400).send({ e: e.message });
+    }
+});
+
+router.post("/loginEmail", async (req, res) => {
+    const updates = Object.keys(req.body);
+    const allowUpdates = ["notification_token", "email", "phone", "password"];
+    const isValid = updates.every((update) => allowUpdates.includes(update));
+
+    if (!isValid) {
+        return res.status(400).send({ error: "No such property to update" });
+    }
+
+    try {
+        const user = await User.findByEmail(
             req.body.phone,
             req.body.password
         );

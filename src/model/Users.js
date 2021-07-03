@@ -13,6 +13,18 @@ const userSchema = mongoose.Schema(
             type: String,
             trim: true
         },
+        email: {
+            required: true,
+            type: String,
+            trim: true,
+            unique: true,
+            validate (value) {
+                const checkedValue = value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).length===9;
+                if (!checkedValue) {
+                    throw new Error("Email address is Invalid");
+                }
+            }
+        },
         phone: {
             required: true,
             type: String,
@@ -73,10 +85,25 @@ userSchema.methods.generateAuthToken = async function () {
     return token;
 };
 
-// Checking username and password for login for /users/login api
 userSchema.statics.findByCredentials = async (phone, password) => {
-    const user = await User.findOne({ phone });
+    let user
+    user = await User.findOne({ phone: phone });
 
+    if (!user) {
+        throw new Error("No Account registered with this phone number");
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+        throw new Error("Wrong Password");
+    }
+    return user;
+};
+
+userSchema.statics.findByEmail = async (email, password) => {
+    let user
+    user = await User.findOne({ email: email });
+    console.log('User', user)
     if (!user) {
         throw new Error("No Account registered with this phone number");
     }
