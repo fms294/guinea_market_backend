@@ -85,7 +85,7 @@ router.post("/loginEmail", async (req, res) => {
 //Patch User Profile Update
 router.patch("/updateProfile", [auth, profile_image.single("images")], async (req,res) => {
     const updates = Object.keys(req.body);
-    const allowUpdates = [ "username", "profile_img"];
+    const allowUpdates = [ "username", "email", "profile_img"];
     const isValid = updates.every((update) => allowUpdates.includes(update));
     if (!isValid) {
         return res.status(400).send({ error: "No such property to update" });
