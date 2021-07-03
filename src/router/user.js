@@ -28,7 +28,7 @@ router.post("/signup", async (req, res) => {
 // Post request for Login
 router.post("/login", async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowUpdates = ["notification_token", "phone", "password"];
+    const allowUpdates = ["notification_token", "email", "phone", "password"];
     const isValid = updates.every((update) => allowUpdates.includes(update));
 
     if (!isValid) {
