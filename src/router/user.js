@@ -3,6 +3,11 @@ const User = require("../model/Users");
 const Listing = require("../model/Listings");
 const router = new express.Router();
 const auth = require("../middleware/auth");
+const {send_sms_email} = require("../sms/send_sms");
+const {validatePhone} = require("../constants/common");
+const {validateEmail} = require("../constants/common");
+const {change_password_send_sms_email} = require("../sms/send_sms");
+const {registration_otp_email} = require("../sms/send_sms");
 const {change_password_send_sms} = require("../sms/send_sms");
 const { send_sms , registration_otp } = require("../sms/send_sms");
 const {profile_image, s3} = require("../middleware/upload");
@@ -28,7 +33,7 @@ router.post("/signup", async (req, res) => {
 // Post request for Login
 router.post("/login", async (req, res) => {
     const updates = Object.keys(req.body);
-    const allowUpdates = ["notification_token", "email", "phone", "password"];
+    const allowUpdates = ["notification_token", "phone", "password"];
     const isValid = updates.every((update) => allowUpdates.includes(update));
 
     if (!isValid) {
@@ -54,38 +59,38 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.post("/loginEmail", async (req, res) => {
-    const updates = Object.keys(req.body);
-    const allowUpdates = ["notification_token", "email", "phone", "password"];
-    const isValid = updates.every((update) => allowUpdates.includes(update));
-
-    if (!isValid) {
-        return res.status(400).send({ error: "No such property to update" });
-    }
-
-    try {
-        const user = await User.findByEmail(
-            req.body.phone,
-            req.body.password
-        );
-        // auth token
-        updates.forEach((update) => {
-            if(update === "notification_token") {
-                user[update] = req.body[update];
-            }
-        });
-        await user.save();
-        const token = await user.generateAuthToken();
-        res.send({ user, token });
-    } catch (e) {
-        res.status(400).send({ e: e.message });
-    }
-});
+// router.post("/loginEmail", async (req, res) => {
+//     const updates = Object.keys(req.body);
+//     const allowUpdates = ["notification_token", "email", "phone", "password"];
+//     const isValid = updates.every((update) => allowUpdates.includes(update));
+//
+//     if (!isValid) {
+//         return res.status(400).send({ error: "No such property to update" });
+//     }
+//
+//     try {
+//         const user = await User.findByEmail(
+//             req.body.phone,
+//             req.body.password
+//         );
+//         // auth token
+//         updates.forEach((update) => {
+//             if(update === "notification_token") {
+//                 user[update] = req.body[update];
+//             }
+//         });
+//         await user.save();
+//         const token = await user.generateAuthToken();
+//         res.send({ user, token });
+//     } catch (e) {
+//         res.status(400).send({ e: e.message });
+//     }
+// });
 
 //Patch User Profile Update
 router.patch("/updateProfile", [auth, profile_image.single("images")], async (req,res) => {
     const updates = Object.keys(req.body);
-    const allowUpdates = [ "username", "email", "profile_img"];
+    const allowUpdates = [ "username", "profile_img"];
     const isValid = updates.every((update) => allowUpdates.includes(update));
     if (!isValid) {
         return res.status(400).send({ error: "No such property to update" });
@@ -154,14 +159,41 @@ router.get("/owner/:id", async (req, res) => {
 router.post("/forgetPass", async (req, res) => {
     try {
         const user = await User.findOne({ phone: req.body.phone });
-        //console.log(user.phone);
         if (!user) {
             return res.status(404).send();
         }
         const otp = Math.floor(1000 + Math.random() * 9000);
-        //sendForgetPasswordEmail(user.email, user.username, otp);
-        send_sms(user.username, user.phone, otp);
-        res.status(201).send({ user, otp });
+        if (validateEmail(req.body.phone)) {
+            send_sms_email(user.username, user.phone, otp);
+            res.status(201).send({ user, otp });
+        }
+        else if (validatePhone(req.body.phone)) {
+            send_sms(user.username, user.phone, otp);
+            res.status(201).send({ user, otp });
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(400).send(e);
+    }
+});
+
+router.post("/changePass", async (req, res) => {
+    try {
+        const user = await User.findOne({ phone: req.body.phone });
+        console.log(user.phone);
+        if (!user) {
+            return res.status(404).send();
+        }
+        const otp = Math.floor(1000 + Math.random() * 9000);
+        if (validateEmail(user.phone)) {
+            change_password_send_sms_email(user.username, user.phone, otp)
+            res.status(201).send({ user, otp });
+        } else if (validatePhone(user.phone)){
+            change_password_send_sms(user.username, user.phone, otp);
+            res.status(201).send({ user, otp });
+        } else {
+
+        }
     } catch (e) {
         console.log(e);
         res.status(400).send(e);
@@ -199,9 +231,20 @@ router.post("/register_OTP", async (req,res) => {
         if ( user ) {
            throw new Error("User already registered")
         } else {
+            console.log('in  user,l', user)
             const otp = Math.floor(1000 + Math.random() * 9000);
-            registration_otp(req.body.username, req.body.phone, otp);
-            res.status(201).send({otp});
+            if (validateEmail(req.body.phone)) {
+                console.log('in email')
+                registration_otp_email(req.body.username, req.body.phone, otp);
+                res.status(201).send({otp});
+            }
+            else if (validatePhone(req.body.phone)) {
+                console.log("Hello", req.body.phone)
+                registration_otp(req.body.username, req.body.phone, otp);
+                res.status(201).send({otp});
+            } else {
+                res.status(400).send({e: "Invalid Details"});
+            }
         }
     } catch (e) {
         res.status(500).send({e: e.message});
