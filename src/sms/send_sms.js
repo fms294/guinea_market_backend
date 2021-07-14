@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const emailAddress = process.env.EMAIL_ACCOUNT;
-const password = process.env.EMAIL_PASSWORD;
+const password = process.env.PASSWORD;
 const client = require('twilio')(accountSid, authToken);
 
 const send_sms = (name, phone, otp) => {
