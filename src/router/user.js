@@ -231,7 +231,6 @@ router.post("/register_OTP", async (req,res) => {
         if ( user ) {
            throw new Error("User already registered")
         } else {
-            console.log('in  user,l', user)
             const otp = Math.floor(1000 + Math.random() * 9000);
             if (validateEmail(req.body.phone)) {
                 console.log('in email')
